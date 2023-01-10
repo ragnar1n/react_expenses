@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-import "./components/ExpenseItem";
+
 import ExpenseItem from "./components/ExpenseItem";
 
 function App() {
