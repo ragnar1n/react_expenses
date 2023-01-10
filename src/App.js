@@ -14,7 +14,7 @@ function App() {
         {
             date: new Date(2023,0,5),
             title:'new dvd',
-            price:15
+            price:15.90
         }
     ]
 
