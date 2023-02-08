@@ -1,10 +1,16 @@
 import React, {useState} from "react";
 import './ExpenseForm.css'
+import formToggle from "./NewExpense";
 
 const ExpenseForm=(props)=>{
     const [enteredTitle,setEnteredTitle]=useState ('')
     const [enteredAmount,setEnteredAmount]=useState ('')
     const [enteredDate,setEnteredDate]=useState ('')
+
+    const [formEdit,setFormEdit]=useState(false)
+    const formToggle=()=>{
+        setFormEdit(opened => !opened)
+    }
 
     const titleChangeHandler=(event)=>{
         setEnteredTitle(event.target.value)
@@ -28,9 +34,14 @@ const ExpenseForm=(props)=>{
         setEnteredTitle('')
         setEnteredAmount('')
         setEnteredDate('')
+        formToggle()
     }
     return(
-        <form onSubmit={submitHandler}>
+        <div>
+        <div>
+            {!formEdit && (<button onClick={formToggle} type='button'>Add new Expense</button>)}
+        </div>
+            {formEdit && (<form onSubmit={submitHandler}>
             <div className='new-expense__controls'>
                 <div className='new-expense__control'>
                     <label>Title</label>
@@ -46,9 +57,11 @@ const ExpenseForm=(props)=>{
                 </div>
             </div>
             <div className='new-expense__actions'>
-                <button  type='submit'>Add Expense</button>
+                <button type='submit'>Add Expense</button>
+                <button onClick={formToggle} type='button'>Cancel</button>
             </div>
-        </form>
+        </form>)}
+        </div>
     )
 }
 export default ExpenseForm
